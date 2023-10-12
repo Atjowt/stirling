@@ -1,1 +1,1 @@
-/usr/bin/clang -O3 -DNDEBUG -rdynamic CMakeFiles/sterling.dir/main.c.o -o sterling 
+/usr/bin/clang -g -rdynamic CMakeFiles/sterling.dir/main.c.o -o sterling 

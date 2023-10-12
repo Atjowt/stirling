@@ -1,24 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-int* cache;
-
-int sterling(int n, int k) {
-
-    if (k == 1) return 1;
-    if (n == k) return 1;
-    if (k > n) return 0;
-    if (n == 0) return k == 0 ? 1 : 0;
-    if (k == 0) return n == 0 ? 1 : 0;
-
-    int i = (n - 1) + (n - 1) * (k - 1);
-    if (cache[i] == -1) {
-        cache[i] = sterling(n - 1, k - 1) + k * sterling(n - 1, k);
-    }
-
-    return cache[i];
-}
+typedef unsigned long long u64;
 
 int main(int argc, char* argv[]) {
 
@@ -27,17 +10,29 @@ int main(int argc, char* argv[]) {
         return EXIT_FAILURE;
     }
 
-    int n = atoi(argv[1]);
-    int k = atoi(argv[2]);
+    u64 n = atoi(argv[1]);
+    u64 k = atoi(argv[2]);
 
-    int m = n * k;
-    cache = (int*)malloc(m * sizeof(int));
-    for (int i = 0; i < m; i++) {
-        cache[i] = -1;
+    u64* prev = calloc(k + 1, sizeof(u64));
+    u64* curr = calloc(k + 1, sizeof(u64));
+
+    prev[1] = 1;
+
+    for (u64 y = 1; y <= n; y++) {
+        for (u64 x = 1; x <= k; x++) {
+            curr[x] = prev[x - 1] + x * prev[x];
+        }
+        u64* t = prev;
+        prev = curr;
+        curr = t;
     }
     
-    printf("%d\n", sterling(n, k));
+    u64 res = curr[k];
 
-    free(cache);
+    printf("%llu\n", res);
+
+    free(curr);
+    free(prev);
+
     return EXIT_SUCCESS;
 }

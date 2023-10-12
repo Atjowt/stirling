@@ -1,7 +1,7 @@
 [
 {
   "directory": "/media/atjowt/External Disk/repo/sterling/build",
-  "command": "/usr/bin/clang   -O3 -DNDEBUG -o CMakeFiles/sterling.dir/main.c.o -c \"/media/atjowt/External Disk/repo/sterling/main.c\"",
+  "command": "/usr/bin/clang   -g -o CMakeFiles/sterling.dir/main.c.o -c \"/media/atjowt/External Disk/repo/sterling/main.c\"",
   "file": "/media/atjowt/External Disk/repo/sterling/main.c"
 }
 ]
