@@ -12,10 +12,10 @@ STERL_T sterl2(STERL_T n, STERL_T k) {
     if (n < k) return 0;
 
     STERL_T dp[k + 1];
-    for (STERL_T x = 0; x <= k; x++) {
+    dp[0] = 1;
+    for (STERL_T x = 1; x <= k; x++) {
         dp[x] = 0;
     }
-    dp[0] = 1;
 
     for (STERL_T y = 1; y <= n; y++) {
         STERL_T x0 = y < k ? y : k;
